@@ -33,7 +33,7 @@ def num_pc(data, method = 'elbow', B = 20, seed = None):
     else:
         k = max(200, n/4)
     
-    uu = randomized_svd(data, n_components = k, random_state = 123456, n_iter = 3)
+    uu = randomized_svd(data, n_components = k, random_state = 123456, n_iter = 10)
     #7129*10, 10, 10*72
     #############################################
     if method == 'permutation':
@@ -42,7 +42,7 @@ def num_pc(data, method = 'elbow', B = 20, seed = None):
         for i in range(B):
             dat0 = [np.random.choice(data[el,],size = n, replace = False) for el in range(m)]
             dat0 = np.array(dat0)
-            uu0 = randomized_svd(dat0, n_components = k, random_stat = 123456, n_iter = 3)
+            uu0 = randomized_svd(dat0, n_components = k, random_state = 123456, n_iter = 10)
             dstat0[i,] = uu0[1]**2/np.sum(uu0[1]**2)
         psv = np.ones(k)
         for i in range(k):
@@ -54,7 +54,7 @@ def num_pc(data, method = 'elbow', B = 20, seed = None):
     else:
         xraw = np.abs(np.diff(uu[1], n = 2))
         x = smooth(xraw, kind = '3RS3R', twiceit = True, endrule = 'Tukey')
-        nsv = np.where(x<=np.quantile(x,0.5))[0][0]+1
+        nsv = np.where(x<=np.quantile(x,0.5))[0][0]+2 #+2 because of starting from 0
         
     return nsv
             
@@ -93,7 +93,7 @@ def simpleDecomp(Y, k, svdres = None, L1 = None, L2 = None, max_iter= 500, tol =
     BdiffCount = 0
     
     if svdres is None:
-        svdres = randomized_svd(Y, n_components=k, n_iter = 3)
+        svdres = randomized_svd(Y, n_components=k, n_iter = 10, random_state = 123)
         svdres = rotateSVD(svdres)
     
     if L1 is None:
@@ -122,6 +122,10 @@ def simpleDecomp(Y, k, svdres = None, L1 = None, L2 = None, max_iter= 500, tol =
         Zraw = Z
         if (i >= adaptive_iter) & (adaptive_frac > 0):
             cutoffs = np.apply_along_axis(getT,0,Zraw)
+            #tmp = []
+            #for j in range(Zraw.shape[1]):
+                #tmp.append(getT(Zraw[:,j]))
+            #print(tmp)   
         
             for j in range(Z.shape[1]):
                 Z[Z[:,j]<cutoffs[j],j ] = 0
@@ -157,5 +161,6 @@ def simpleDecomp(Y, k, svdres = None, L1 = None, L2 = None, max_iter= 500, tol =
     
     #rownames(B)=colnames(Z)
     Zproject = np.matmul(Z, np.linalg.inv(np.matmul(Z.T, Z)+L2*np.diag(np.ones(k))))
+    #print(i)
     return B, Z, Zraw, Zproject, L1, L2
 
