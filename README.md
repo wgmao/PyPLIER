@@ -1,42 +1,41 @@
 # PyPLIER
 
-```
-commonRows
-solveU
-wrapString
-QV
-mydist
-BH
-DataSmooth
-mapPathway
-plierResToMarkers
-combinePaths
-AUC
-getCutoff
-nameB
-computeChat
-copyMat
-crossVal
-getAUC
-PLIER
-plotU
-plotTopZ
-commonRows
-~~rowNorm~~
-~~num.pc~~
-pinv.ridge
-plotMat
-tscale
-plotTopZallPath
-nonEstimable
-resid
-scad
-quicksoft
-scadZ
-softZ
-getEnrichmentVals
-PLIERsparse
-~~simpleDecomp~~
-~~rotateSVD~~
-projectPLIER
-```
+- commonRows
+- solveU
+- wrapString
+- QV
+- mydist
+- BH
+- DataSmooth
+- mapPathway
+- plierResToMarkers
+- combinePaths
+- AUC
+- getCutoff
+- nameB
+- computeChat
+- copyMat
+- crossVal
+- getAUC
+- PLIER
+- plotU
+- plotTopZ
+- commonRows
+- ~~rowNorm~~
+- ~~num.pc~~
+- pinv.ridge
+- plotMat
+- tscale
+- plotTopZallPath
+- nonEstimable
+- resid
+- scad
+- quicksoft
+- scadZ
+- softZ
+- getEnrichmentVals
+- PLIERsparse
+- ~~simpleDecomp~~
+- ~~rotateSVD~~
+- projectPLIER
+
