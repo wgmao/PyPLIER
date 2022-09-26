@@ -22,8 +22,8 @@ PLIER
 plotU
 plotTopZ
 commonRows
-(done) rowNorm
-(done) num.pc
+~~rowNorm~~
+~~num.pc~~
 pinv.ridge
 plotMat
 tscale
@@ -36,7 +36,7 @@ scadZ
 softZ
 getEnrichmentVals
 PLIERsparse
-(done) simpleDecomp
-(done) rotateSVD
+~~simpleDecomp~~
+~~rotateSVD~~
 projectPLIER
 ```
